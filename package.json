@@ -1,0 +1,29 @@
+{
+  "name": "hsf-reflex-inbox-poller",
+  "version": "0.0.1",
+  "description": "hsf reflex inbox processor",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "DEBUG=hsf:* DEBUG_DEPTH=5 node app",
+    "docker": "docker run -e DEBUG=hsf* -e DEBUG_DEPTH=5 -e NODE_ENV=production -e YODATA_API_KEY=${YODATA_API_KEY} -e REAL_ESTATE_DIGITAL_YODATA_API_KEY=${REAL_ESTATE_DIGITAL_YODATA_API_KEY} -e SMARTER_AGENT_YODATA_API_KEY=${SMARTER_AGENT_YODATA_API_KEY} --init -it hsf-reflex-inbox-poller",
+    "build": "docker build -t hsf-reflex-inbox-poller ."
+  },
+  "author": "Dave Duran <dave@yodata.io> (https://yodata.io/)",
+  "license": "MIT",
+  "dependencies": {
+    "assert-plus": "^1.0.0",
+    "axios": "^0.17.1",
+    "debug": "^3.1.0",
+    "lodash.castarray": "^4.4.0",
+    "lodash.get": "^4.4.2",
+    "yodata-inbox-poller": "^0.2.3"
+  },
+  "devDependencies": {
+    "expect": "^22.1.0",
+    "jest": "^22.0.6",
+    "jest-environment-jsdom": "^22.1.4",
+    "jest-matcher-utils": "^22.1.0",
+    "jest-matchers": "^20.0.3"
+  }
+}

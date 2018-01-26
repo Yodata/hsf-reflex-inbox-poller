@@ -8,13 +8,13 @@ const debug = require('debug');
 const { MESSAGE_PROCESS_COMPLETED, MESSAGE_PROCESS_FAILED } = require('./events');
 
 function log(type, props) {
-  debug(`hsf:${type}`)(props);
+  debug(`hsf:${type}: `)('%j', props);
 }
 
 app.on('dispatch', event => {
   switch (event.type) {
     case MESSAGE_PROCESS_COMPLETED:
-      log(event.type, event.result);
+      log(event.type, event);
       break;
     case MESSAGE_PROCESS_FAILED:
       log(event.type, event.result);

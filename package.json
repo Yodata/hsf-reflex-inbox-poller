@@ -8,7 +8,9 @@
     "dev": "DEBUG=hsf:* DEBUG_DEPTH=5 node app",
     "sim": "DEBUG=hsf:* DEBUG_DEPTH=1 node app/simulate.js",
     "docker": "docker run -e DEBUG=hsf* -e DEBUG_DEPTH=5 -e NODE_ENV=production -e YODATA_API_KEY=${YODATA_API_KEY} -e REAL_ESTATE_DIGITAL_YODATA_API_KEY=${REAL_ESTATE_DIGITAL_YODATA_API_KEY} -e SMARTER_AGENT_YODATA_API_KEY=${SMARTER_AGENT_YODATA_API_KEY} --init -it hsf-reflex-inbox-poller",
-    "build": "docker build -t 540541948463.dkr.ecr.us-west-2.amazonaws.com/hsf-reflex-inbox-poller ."
+    "build": "docker build -t 540541948463.dkr.ecr.us-west-2.amazonaws.com/hsf-reflex-inbox-poller .",
+    "login": "$(aws ecr get-login --no-include-email --profile hsf)",
+    "push": "docker push 540541948463.dkr.ecr.us-west-2.amazonaws.com/hsf-reflex-inbox-poller"
   },
   "author": "Dave Duran <dave@yodata.io> (https://yodata.io/)",
   "license": "MIT",
@@ -18,7 +20,7 @@
     "debug": "^3.1.0",
     "lodash.castarray": "^4.4.0",
     "lodash.get": "^4.4.2",
-    "yodata-inbox-poller": "^0.2.3"
+    "yodata-inbox-poller": "^0.2.4"
   },
   "devDependencies": {
     "expect": "^22.1.0",

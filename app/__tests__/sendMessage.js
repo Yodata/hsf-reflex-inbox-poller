@@ -1,45 +1,44 @@
-const expect = require('jest-matchers');
-const sendMessage = require('../sendMessage');
+const expect = require('jest-matchers')
+const sendMessage = require('../sendMessage')
 
 describe('sendMessage.js', () => {
-  let url, message, key;
+  let url, message, key
 
   beforeEach(() => {
-    url = 'http://httpbin.org/post';
-    message = {type: 'TestMessage'};
-    key = 'apiKey';
-  });
+    url = 'http://httpbin.org/post'
+    message = {type: 'TestMessage'}
+    key = 'apiKey'
+  })
 
   test(`resolves to SendAction`, () => {
     return expect(sendMessage(url, message)).resolves.toMatchObject({
-      type:         'SendAction',
+      type: 'SendAction',
       actionStatus: 'CompletedActionStatus',
-      object:       expect.anything(),
-      target:       url,
-      result:       200
-    });
-  });
+      object: expect.anything(),
+      target: url,
+      result: 200
+    })
+  })
 
   test(`client/auth errors are resolved with FailedActionStatus`, () => {
-    url = 'http://httpbin.org/status/403';
+    url = 'http://httpbin.org/status/403'
     return expect(sendMessage(url, message)).resolves.toMatchObject({
-      type:         'SendAction',
+      type: 'SendAction',
       actionStatus: 'FailedActionStatus',
-      object:       message,
-      target:       url,
-      error:        'Request failed with status code 403'
+      object: message,
+      target: url,
+      error: 'Request failed with status code 403'
     })
-  });
+  })
 
   test(`network errors are resolved with FailedActionStatus`, () => {
-    url = 'not.gonna.work';
+    url = 'not.gonna.work'
     return expect(sendMessage(url, message)).resolves.toMatchObject({
-      type:         'SendAction',
+      type: 'SendAction',
       actionStatus: 'FailedActionStatus',
-      object:       message,
-      target:       url,
-      error:        expect.any(String)
+      object: message,
+      target: url,
+      error: expect.any(String)
     })
-  });
-
-});
+  })
+})

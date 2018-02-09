@@ -12,6 +12,20 @@ Processes messages from hsf.ds.bhhsresource.com/inbox with handleMessage.js
   1. the message is from RED
   2. acceptedByMember is false
 
+## Development
+
+### Build
+```bash
+$ npm run build
+```
+
+### Push
+```bash
+$ npm run login
+
+$ npm run push
+```
+
 ## Configuration
 
 ### logging
